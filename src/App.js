@@ -10,6 +10,10 @@ function App() {
     setGoods(prevGoods => [...prevGoods, good])
   }
 
+  const removeGood = (id) => {
+    setGoods(goods.filter(good => good.id !== id));
+  }
+
   const toggleGoodStatus = (id) => {
     setGoods((prevGoods) => {
       const goods = prevGoods.map((good) => {
@@ -55,7 +59,11 @@ function App() {
 
   return (
     <div className="App">
-      <GoodsList goods={goods} toggleGoodStatus={toggleGoodStatus}/>
+      <GoodsList
+        goods={goods}
+        toggleGoodStatus={toggleGoodStatus}
+        removeGood={removeGood}
+      />
 
       <GoodsForm goods={goods} addGood={addGood}/>
     </div>
