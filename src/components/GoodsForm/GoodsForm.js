@@ -1,19 +1,29 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
+import ClassNames from "classnames";
 
 import "./GoodsForm.css";
 
 
 export const GoodsForm = ({ goods, addGood }) => {
   const [goodName, setGoodName] = useState('');
+  const [goodNameValid, setgoodNameValid] = useState(true);
   const [goodPriority, setGoodPriority] = useState(1);
   const [goodStatus, setGoodStatus] = useState('Have');
 
   return (
     <form 
-      className="goods-form"
+      className={ClassNames({
+        "goods-form": true,
+        "goods-form--error": !goodNameValid,
+      })}
       onSubmit={(e) => {
         e.preventDefault();
+
+        if (goodName.trim() === '') {
+          setgoodNameValid(false);
+          return;
+        }
 
         addGood({
           id: goods.length === 0 
@@ -40,9 +50,18 @@ export const GoodsForm = ({ goods, addGood }) => {
           id="good-name"
           placeholder="Good name"
           value={goodName}
-          onChange={(e) => setGoodName(e.target.value)}
-        />
+          onChange={(e) => {
+            setgoodNameValid(true);
+            setGoodName(e.target.value)
+          }}
+        />        
       </label>
+
+      {!goodNameValid 
+        && <div className="name-error">
+          Enter valid name, please.
+        </div>
+      }
 
       <label htmlFor="good-priority">
         Priority:&nbsp;
