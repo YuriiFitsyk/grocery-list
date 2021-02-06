@@ -31,14 +31,17 @@ export const GoodDetails = ({
       </p>
 
       <p>
-        <input
-          type="checkbox"
-          checked={goodStatus==="Have"}
-          onChange={() => toggleGoodStatus(id)}
-        />
+        <label htmlFor="good-details-status">
+          <input
+            id="good-details-status"
+            type="checkbox"
+            checked={goodStatus==="Have"}
+            onChange={() => toggleGoodStatus(id)}
+          />
 
-        &nbsp;Status:&nbsp;
-        {goodStatus}
+          &nbsp;Status:&nbsp;
+          {goodStatus}
+        </label>
       </p>
 
       {goodStatusChange 

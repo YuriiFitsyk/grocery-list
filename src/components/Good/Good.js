@@ -32,15 +32,17 @@ export const Good = ({
       </p>
 
       <p>
-        <input
-          id="good-status"
-          type="checkbox"
-          checked={goodStatus==="Have"}
-          onChange={() => toggleGoodStatus(id)}
-        />
-        
-        Status:&nbsp;
-        {goodStatus}
+        <label htmlFor="good-status">
+          <input
+            id="good-status"
+            type="checkbox"
+            checked={goodStatus==="Have"}
+            onChange={() => toggleGoodStatus(id)}
+          />
+          
+          Status:&nbsp;
+          {goodStatus}
+        </label>
       </p>
 
       <button
