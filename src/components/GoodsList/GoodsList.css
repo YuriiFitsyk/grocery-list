@@ -1,0 +1,20 @@
+.goods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  width: 200px;
+
+  border: 1px solid #000;
+  border-radius: 5%;
+}
+
+.goods-list__title {
+  text-align: center;
+}
+
+.goods-list__list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

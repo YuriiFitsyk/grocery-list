@@ -1,0 +1,13 @@
+.good {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid green;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.good--run-out {
+  border-color: red;
+}

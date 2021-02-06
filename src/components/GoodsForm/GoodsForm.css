@@ -1,0 +1,21 @@
+.goods-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+
+  border: 1px solid #000;
+  border-radius: 5%;
+}
+
+.goods-form--error {
+  border-color: red;
+} 
+
+.name-error {
+  padding: 3px;
+  border: 1px solid #000;
+  border-radius: 5%;
+  color: white;
+  background-color: red;
+}

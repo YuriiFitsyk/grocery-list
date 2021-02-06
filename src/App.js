@@ -1,23 +1,72 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { GoodsForm } from './components/GoodsForm';
+import { GoodsList } from './components/GoodsList';
+import { GoodDetails } from './components/GoodDetails';
 import './App.css';
 
 function App() {
+  const [goods, setGoods] = useState([]);
+  const [selectedGoodId, setSelectedGoodId] = useState('');
+
+  const addGood = (good) => {
+    setGoods(prevGoods => [...prevGoods, good])
+  }
+
+  const removeGood = (id) => {
+    setGoods(goods.filter(good => good.id !== id));
+    
+    if (id === selectedGoodId) {
+      setSelectedGoodId('');
+    }
+  }
+
+  const goodSelect = ({target},id) => {
+    if(target.id !== 'good-status' && target.id !== 'good-remove') {
+      setSelectedGoodId(id);
+    }
+  }
+
+  const toggleGoodStatus = (id) => {
+    setGoods((prevGoods) => {
+      const goods = prevGoods.map((good) => {
+        if(good.id === id) {
+          const changeDate = new Date().toDateString() + ', ' + new Date().toLocaleTimeString();
+            
+          const changedGood = {
+            ...good,
+            goodStatus: good.goodStatus === "Have" ? "Run out" : "Have",
+            goodStatusChange: changeDate,
+          };
+          
+          return changedGood;
+        }
+
+        return good;
+      })
+
+      return goods;
+    })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GoodsList
+        goods={goods}
+        toggleGoodStatus={toggleGoodStatus}
+        removeGood={removeGood}
+        goodSelect={goodSelect}
+      />
+      <div>
+        <GoodsForm goods={goods} addGood={addGood}/>
+        {selectedGoodId 
+          && goods.find(good => good.id === selectedGoodId)
+          && <GoodDetails 
+            {...goods.find(good => good.id === selectedGoodId)}
+            removeGood={removeGood}
+            toggleGoodStatus={toggleGoodStatus}
+          />
+        }
+      </div>
     </div>
   );
 }
