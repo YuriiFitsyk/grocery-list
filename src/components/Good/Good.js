@@ -19,7 +19,7 @@ export const Good = ({
       'good': true,
       'good--run-out': goodStatus === 'Run out',
       })}
-      onClick={() => goodSelect(id)}
+      onClick={(e) => goodSelect(e, id)}
     >
       <p>
         Name:&nbsp;
@@ -33,6 +33,7 @@ export const Good = ({
 
       <p>
         <input
+          id="good-status"
           type="checkbox"
           checked={goodStatus==="Have"}
           onChange={() => toggleGoodStatus(id)}
@@ -43,6 +44,7 @@ export const Good = ({
       </p>
 
       <button
+        id="good-remove"
         type="button"
         onClick={() => removeGood(id)}
       >

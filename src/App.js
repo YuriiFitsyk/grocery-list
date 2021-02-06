@@ -20,8 +20,10 @@ function App() {
     }
   }
 
-  const goodSelect = (id) => {
-    setSelectedGoodId(id);
+  const goodSelect = ({target},id) => {
+    if(target.id !== 'good-status' && target.id !== 'good-remove') {
+      setSelectedGoodId(id);
+    }
   }
 
   const toggleGoodStatus = (id) => {
