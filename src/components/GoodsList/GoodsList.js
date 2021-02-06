@@ -8,10 +8,26 @@ import "./GoodsList.css";
 export const GoodsList = ({ goods, toggleGoodStatus }) => {
   const [filter, setFilter] = useState('All')
 
-  const filteredGoods = goods.filter(good => filter !== "All" 
+  let filteredGoods = goods.filter(good => filter !== "All" 
     ? good.goodStatus === filter 
     : good
   )
+
+  filteredGoods = [...filteredGoods].sort((a, b) => {
+    if(a.goodPriority - b.goodPriority > 0) {
+      return 1;
+    } else if (a.goodPriority - b.goodPriority === 0) {
+      if (a.goodName.localeCompare(b.goodName) > 0) {
+        return 1;
+      } else if (a.goodName.localeCompare(b.goodName) === 0) {
+        return 0; 
+      } else {
+        return -1;
+      }
+    } else {
+      return -1
+    }
+  })
 
   return (
     <div className="goods-list">
