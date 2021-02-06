@@ -44,6 +44,7 @@ export const GoodsList = ({ goods, toggleGoodStatus, removeGood, goodSelect }) =
       <ul className="goods-list__list">
         {filteredGoods.map(good => (
           <Good
+            key={good.id}
             {...good}
             toggleGoodStatus={toggleGoodStatus}
             removeGood={removeGood}
@@ -57,4 +58,7 @@ export const GoodsList = ({ goods, toggleGoodStatus, removeGood, goodSelect }) =
 
 GoodsList.propTypes = {
   goods: PropTypes.array.isRequired,
+  toggleGoodStatus: PropTypes.func.isRequired,
+  removeGood: PropTypes.func.isRequired,
+  goodSelect: PropTypes.func.isRequired,
 };

@@ -57,6 +57,7 @@ function App() {
       <div>
         <GoodsForm goods={goods} addGood={addGood}/>
         {selectedGoodId 
+          && goods.find(good => good.id === selectedGoodId)
           && <GoodDetails 
             {...goods.find(good => good.id === selectedGoodId)}
             removeGood={removeGood}

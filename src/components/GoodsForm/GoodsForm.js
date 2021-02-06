@@ -83,5 +83,6 @@ export const GoodsForm = ({ goods, addGood }) => {
 };
 
 GoodsForm.propTypes = {
+  goods: PropTypes.array.isRequired,
   addGood: PropTypes.func.isRequired,
 }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import ClassNames from 'classnames';
 import PropTypes from "prop-types";
 
@@ -58,4 +58,14 @@ export const GoodDetails = ({
 
     </div>
   )
-} 
+};
+
+GoodDetails.proppTypes = {
+  goodName: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  goodPriority: PropTypes.number.isRequired,
+  goodStatus: PropTypes.string.isRequired,
+  goodStatusChange: PropTypes.func.isRequired,
+  toggleGoodStatus: PropTypes.func.isRequired,
+  removeGood: PropTypes.func.isRequired,
+}

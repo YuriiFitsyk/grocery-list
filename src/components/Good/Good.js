@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import ClassNames from 'classnames';
 import PropTypes from "prop-types";
 
@@ -51,3 +51,13 @@ export const Good = ({
     </li>
   )
 };
+
+Good.proppTypes = {
+  goodName: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  goodPriority: PropTypes.number.isRequired,
+  goodStatus: PropTypes.string.isRequired,
+  toggleGoodStatus: PropTypes.func.isRequired,
+  removeGood: PropTypes.func.isRequired,
+  goodSelect: PropTypes.func.isRequired,
+}
