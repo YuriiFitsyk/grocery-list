@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import { GoodsForm } from './components/GoodsForm';
+import { GoodsList } from './components/GoodsList';
 import './App.css';
 
 function App() {
+  const [goods, setGoods] = useState([]);
+
+  const addGood = (good) => {
+    setGoods(prevGoods => [...prevGoods, good])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GoodsForm goods={goods} addGood={addGood}/>
+      <GoodsList goods={goods}/>
     </div>
   );
 }
