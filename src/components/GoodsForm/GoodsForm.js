@@ -4,12 +4,10 @@ import PropTypes from "prop-types";
 import "./GoodsForm.css";
 
 
-export const GoodsForm = ({ addGood }) => {
+export const GoodsForm = ({ goods, addGood }) => {
   const [goodName, setGoodName] = useState('');
   const [goodPriority, setGoodPriority] = useState(1);
   const [goodStatus, setGoodStatus] = useState('Have');
-  const [goodStatusChange, setGoodStatusChange] = useState('');
-  
 
   return (
     <form 
@@ -18,16 +16,19 @@ export const GoodsForm = ({ addGood }) => {
         e.preventDefault();
 
         addGood({
+          id: goods.length === 0 
+            ? 1 
+            : goods[goods.length - 1].id + 1,
           goodName,
           goodPriority,
           goodStatus,
-          goodStatusChange,
+          goodStatusChange: '',
+          
         });
 
         setGoodName('');
         setGoodPriority(1);
         setGoodStatus('Have');
-        setGoodStatusChange('');
       }}
     >
       Add your good
@@ -67,12 +68,6 @@ export const GoodsForm = ({ addGood }) => {
           value={goodStatus}
           onChange={(e) => {
             setGoodStatus(e.target.value);
-            const changeDate = new Date();
-            setGoodStatusChange(
-              changeDate.toDateString() 
-              + ', ' 
-              + changeDate.toLocaleTimeString()
-            );
           }}
         >
           <option value="Have">Have</option>
