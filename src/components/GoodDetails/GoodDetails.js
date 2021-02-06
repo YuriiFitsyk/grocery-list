@@ -2,24 +2,23 @@ import React, {useState} from "react";
 import ClassNames from 'classnames';
 import PropTypes from "prop-types";
 
-import "./Good.css";
+import './GoodDetails.css'
 
-export const Good = ({ 
+export const GoodDetails = ({
   goodName,
+  id,
   goodPriority,
   goodStatus,
-  id,
+  goodStatusChange,
   toggleGoodStatus,
-  removeGood,
-  goodSelect
+  removeGood
 }) => {
   return (
-    <li 
+    <div 
       className={ClassNames({
-      'good': true,
-      'good--run-out': goodStatus === 'Run out',
+        'good-details': true,
+        'good-details--run-out': goodStatus === 'Run out',
       })}
-      onClick={() => goodSelect(id)}
     >
       <p>
         Name:&nbsp;
@@ -37,10 +36,18 @@ export const Good = ({
           checked={goodStatus==="Have"}
           onChange={() => toggleGoodStatus(id)}
         />
-        
-        Status:&nbsp;
+
+        &nbsp;Status:&nbsp;
         {goodStatus}
       </p>
+
+      {goodStatusChange 
+        && <p>
+          Last change of status:&nbsp;
+          <br/>
+          {goodStatusChange}
+        </p>
+      }
 
       <button
         type="button"
@@ -48,6 +55,7 @@ export const Good = ({
       >
         &times;
       </button>
-    </li>
+
+    </div>
   )
-};
+} 

@@ -5,7 +5,7 @@ import { Good } from "../Good";
 
 import "./GoodsList.css";
 
-export const GoodsList = ({ goods, toggleGoodStatus, removeGood }) => {
+export const GoodsList = ({ goods, toggleGoodStatus, removeGood, goodSelect }) => {
   const [filter, setFilter] = useState('All')
 
   let filteredGoods = goods.filter(good => filter !== "All" 
@@ -41,12 +41,13 @@ export const GoodsList = ({ goods, toggleGoodStatus, removeGood }) => {
         <option value="Run out">Run out</option>
       </select>
 
-      <ul>
+      <ul className="goods-list__list">
         {filteredGoods.map(good => (
           <Good
             {...good}
             toggleGoodStatus={toggleGoodStatus}
             removeGood={removeGood}
+            goodSelect={goodSelect}
           />
         ))}
       </ul>
